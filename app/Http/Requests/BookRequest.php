@@ -14,11 +14,12 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'author' => 'required|max:255',
+            'name' => 'required',
+            'author' => 'required',
             'year' => 'required|numeric|max:2022|min:1700',
             'description' => 'required',
-            'category_id' => 'required|numeric|exists:categories,id'
+            'category_id' => 'required|numeric|exists:categories,id',
+            'document' => 'required|mimes:pdf,docx,epub,doc',
         ];
     }
 }

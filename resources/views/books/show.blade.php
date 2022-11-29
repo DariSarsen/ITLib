@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">
-                    <dl class="row fs-4">
+                    <dl class="row fs-5">
                         <dt class="col-md-3">Название:</dt>
                         <dd class="col-md-9">{{$book->name}}</dd>
                         <dt class="col-md-3">Автор:</dt>
@@ -18,6 +18,7 @@
                         <dd class="col-md-9">{{$book->year}}</dd>
                         <dt class="col-md-3">Описание книги:</dt>
                         <dd class="col-md-9">{{$book->description}}</dd>
+                        <a href="{{asset($book->document)}}" class="text-center mt-4"><i class="bi bi-file-earmark-arrow-down"> </i>Download this book </a>
                     </dl>
                 </h5>
                 @can('update',$book)

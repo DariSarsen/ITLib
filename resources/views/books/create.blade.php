@@ -10,7 +10,7 @@
             </div>
             <div class="col-lg-10 mx-auto p-5 rounded bg-white border border-light shadow-sm">
 
-                <form action="{{route('books.store')}}" method="post">
+                <form action="{{route('books.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label for="inputName" class="col-sm-3 col-form-label">Имя Книги:</label>
@@ -78,6 +78,20 @@
                             @enderror
                         </div>
                     </div>
+
+
+                    <div class="row mb-3">
+                        <label for="document" class="col-sm-3 col-form-label">Файл:</label>
+                        <div class="col-sm-9">
+                            <input type="file" required id="document" class="form-control @error('document') is-invalid @enderror"
+                                   name="document" placeholder="Файл..">
+                            @error('description')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+
 
                     <div class="row mb-3 justify-content-center">
                         <div class="col-md-4">

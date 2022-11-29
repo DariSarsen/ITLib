@@ -12,7 +12,7 @@
             @else
                 @foreach($books as $book)
 
-                    <div class="col-md-5 d-inline-flex">
+                    <div class="col-md-6 d-inline-flex">
                         <div class="card w-100 shadow-sm">
 
                             <div class="card-body">
@@ -31,7 +31,7 @@
                                 <div>
                                     <b>Author: </b> <span class="card-text text-secondary">{{$book->author}}<br>
                                     </span>
-                                    <b>Description: </b>{{$book->description}}
+                                    <b>Description: </b><span class="card-text d-block text-truncate">{{$book->description}}</span>
                                 </div>
                             </div>
                             <div class="card-footer border-0">

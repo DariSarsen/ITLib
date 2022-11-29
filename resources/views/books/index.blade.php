@@ -8,7 +8,7 @@
             @if(isset($books))
                 @foreach($books as $book)
 
-                    <div class="col-md-5 d-inline-flex">
+                    <div class="col-md-4 d-inline-flex">
                         <div class="card w-100 shadow-sm">
 
                             <div class="card-body">
@@ -21,7 +21,7 @@
                                         <form action="{{route('user.editFavourites',$book->id)}}" method="post">
                                             @csrf
                                             @method('PUT')
-                                            @if($book->isFavourite())
+                                            @if(in_array($book->id,$favourites))
                                                 <button class="bi bi-bookmark-fill bg-white border-0" title="Delete from Favourites"></button>
                                             @else
                                                 <button class="bi bi-bookmark bg-white border-0" title="Add to Favourites"></button>
@@ -33,7 +33,7 @@
                                 <div>
                                     <b>Author: </b> <span class="card-text text-secondary">{{$book->author}}<br>
                                     </span>
-                                    <b>Description: </b>{{$book->description}}
+                                    <b>Description: </b><span class="card-text d-block text-truncate">{{$book->description}}</span>
                                 </div>
                             </div>
                             <div class="card-footer border-0">

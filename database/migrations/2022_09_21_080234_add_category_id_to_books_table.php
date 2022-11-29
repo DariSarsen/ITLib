@@ -16,7 +16,7 @@ return new class extends Migration {
     {
         Schema::table('books', function (Blueprint $table) {
             $table->dropForeign('books_category_id_foreign');
-            $table->dropColumnn('category_id');
+            $table->dropColumn('category_id');
         });
     }
 };
