@@ -22,23 +22,23 @@
                                             @csrf
                                             @method('PUT')
                                             @if(in_array($book->id,$favourites))
-                                                <button class="bi bi-bookmark-fill bg-white border-0" title="Delete from Favourites"></button>
+                                                <button class="bi bi-bookmark-fill bg-white border-0" title="{{ __('appword.deletefavourites') }}"></button>
                                             @else
-                                                <button class="bi bi-bookmark bg-white border-0" title="Add to Favourites"></button>
+                                                <button class="bi bi-bookmark bg-white border-0" title="{{ __('appword.addfavourites') }}"></button>
                                             @endif
                                         </form>
                                         @endcan
                                     </div>
                                 </div>
                                 <div>
-                                    <b>Author: </b> <span class="card-text text-secondary">{{$book->author}}<br>
+                                    <b>{{ __('appword.author') }}: </b> <span class="card-text text-secondary">{{$book->author}}<br>
                                     </span>
-                                    <b>Description: </b><span class="card-text d-block text-truncate">{{$book->description}}</span>
+                                    <b>{{ __('appword.description') }}: </b><span class="card-text d-block text-truncate">{{$book->description}}</span>
                                 </div>
                             </div>
                             <div class="card-footer border-0">
                                 <a href="{{route('books.show', $book->id)}}"
-                                   class="text-center d-block">Подробнее...</a>
+                                   class="text-center d-block">{{ __('appword.inmoredetail') }}</a>
                             </div>
                         </div>
                     </div>

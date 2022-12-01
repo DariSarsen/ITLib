@@ -14,7 +14,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <input type="email" style="background-color: #040e11" class="form-control border border-dark text-light @error('email') is-invalid @enderror"
-                                       name="email" placeholder="{{ __('Email Address') }}" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                       name="email" placeholder="{{__('appword.email adr')}}" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                             <div class="col">
                                 <input type="password"
                                        style="background-color: #040e11" class="form-control border border-dark text-light @error('password') is-invalid @enderror" name="password"
-                                       required autocomplete="current-password" placeholder="{{ __('Password') }}">
+                                       required autocomplete="current-password" placeholder="{{__('appword.password')}}">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -51,8 +51,8 @@
 
                         <div class="row mb-4 border-bottom border-dark pb-3">
                             <div class="col">
-                                <button type="submit" class="btn btn-outline-light btn-sm w-100">
-                                    {{ __('Login') }}
+                                <button type="submit" class="btn btn-outline-light btn-sm w-100 text-uppercase">
+                                    {{ __('appword.login') }}
                                 </button>
 
 {{--                                @if (Route::has('password.request'))--}}
@@ -63,7 +63,7 @@
                             </div>
                         </div>
 
-                        <p class="text-center my-0">Don't have an account yet? <a href="{{route('register')}}" class="text-decoration-none">Register</a></p>
+                        <p class="text-center my-0">{{ __('appword.registermessage1') }} <a href="{{route('register')}}" class="text-decoration-none">{{__('appword.register')}}</a></p>
                     </form>
                 </div>
             </div>

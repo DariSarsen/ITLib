@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
 Auth::routes();
 
+Route::get('lang/{lang}', [LangController::class, 'change'])->name('changeLang');
 
 Route::resource('books', BookController::class)->only('index', 'show');
 Route::get('/books/category/{category}', [BookController::class, 'booksByCategory'])->name('books.category');

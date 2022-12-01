@@ -13,7 +13,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <input type="text" style="background-color: #040e11" class="form-control border border-dark text-light @error('name') is-invalid @enderror"
-                                       name="name" value="{{ old('name') }}" placeholder="{{ __('Name') }}" required autocomplete="name" autofocus>
+                                       name="name" value="{{ old('name') }}" placeholder="{{__('appword.name')}}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <input type="email" style="background-color: #040e11" class="form-control border border-dark text-light @error('email') is-invalid @enderror"
-                                       name="email" value="{{ old('email') }}" placeholder="{{ __('Email Address') }}" required autocomplete="email">
+                                       name="email" value="{{ old('email') }}" placeholder="{{__('appword.email adr')}}" required autocomplete="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <input type="password" style="background-color: #040e11" class="form-control border border-dark text-light @error('password') is-invalid @enderror" name="password"
-                                       required autocomplete="new-password" placeholder="{{ __('Password') }}">
+                                       required autocomplete="new-password" placeholder="{{__('appword.password')}}">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -52,19 +52,19 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <input type="password" style="background-color: #040e11" class="form-control border border-dark text-light"
-                                       name="password_confirmation" required placeholder="{{ __('Confirm Password') }}" autocomplete="new-password">
+                                       name="password_confirmation" required placeholder="{{__('appword.confirmpass')}}" autocomplete="new-password">
                             </div>
                         </div>
 
                         <div class="row mb-4 border-bottom border-dark pb-3">
                             <div class="col">
                                 <button type="submit" class="btn btn-outline-light btn-sm w-100">
-                                    {{ __('Register') }}
+                                    {{__('appword.register')}}
                                 </button>
                             </div>
                         </div>
 
-                        <p class="text-center my-0">Have an account? <a href="{{route('login')}}" class="text-decoration-none">Log in</a></p>
+                        <p class="text-center my-0">{{__('appword.registermessage2')}} <a href="{{route('login')}}" class="text-decoration-none">{{__('appword.login')}}</a></p>
                     </form>
                 </div>
             </div>

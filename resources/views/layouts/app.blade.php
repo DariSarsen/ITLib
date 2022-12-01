@@ -57,111 +57,130 @@
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
+            {{--            <li class="nav-item d-block d-lg-none">--}}
+            {{--                <a class="nav-link nav-icon search-bar-toggle " href="#">--}}
+            {{--                    --}}
+            {{--                </a>--}}
+            {{--            </li><!-- End Search Icon-->--}}
+
+            <li class="nav-item d-block mx-3">
+                <a aria-haspopup="true" class="nav-link" data-bs-toggle="dropdown">
+
+                    <span class="mx-2">
+                    <i class="ri-translate-2"></i>
+                        {{config('app.languages')[app()->getLocale()]}}
+                    </span>
+                    <span style="border-left: 1px solid rgb(187, 187, 187);"> </span>
                 </a>
-            </li><!-- End Search Icon-->
 
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    @foreach(config('app.languages') as $key => $lang)
+                        <a class="dropdown-item" href="{{route('changeLang',$key)}}">{{$lang}}</a>
+                    @endforeach
+                </div>
 
-            <li class="nav-item dropdown pe-3">
-                @guest
-                    <ul class="navbar-nav ms-auto">
-                        @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold fs-5" href="{{ route('login') }}">{{ __('Log in') }}</a>
-                            </li>
-                        @endif
-                    </ul>
-                @else
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
-                    </a><!-- End Profile Iamge Icon -->
+                    <li class="nav-item dropdown pe-3">
+                        @guest
+                            <ul class="navbar-nav ms-auto">
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-bold fs-5"
+                                           href="{{ route('login') }}">{{ __('appword.login') }}</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        @else
+                            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                               data-bs-toggle="dropdown">
+                                <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                                <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
+                            </a><!-- End Profile Iamge Icon -->
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>{{ Auth::user()->name }}</h6>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                <li class="dropdown-header">
+                                    <h6>{{ Auth::user()->name }}</h6>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{route('user.profile')}}">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{route('user.favourites')}}">
-                                <i class="bi bi-star"></i>
-                                <span>Favourites</span>
-                            </a>
-                        </li>
-                        {{--                        <li>--}}
-                        {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-                        {{--                                <i class="bi bi-bell"></i>--}}
-                        {{--                                <!--                            <span class="badge bg-primary badge-number">4</span>-->--}}
-                        {{--                                <span>Notifications</span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="{{route('user.profile')}}">
+                                        <i class="bi bi-person"></i>
+                                        <span>{{ __('appword.myprofile') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center"
+                                       href="{{route('user.favourites')}}">
+                                        <i class="bi bi-star"></i>
+                                        <span>{{ __('appword.favourites') }}</span>
+                                    </a>
+                                </li>
+                                {{--                        <li>--}}
+                                {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+                                {{--                                <i class="bi bi-bell"></i>--}}
+                                {{--                                <!--                            <span class="badge bg-primary badge-number">4</span>-->--}}
+                                {{--                                <span>Notifications</span>--}}
+                                {{--                            </a>--}}
+                                {{--                        </li>--}}
 
-                        {{--                        <li>--}}
-                        {{--                            <hr class="dropdown-divider">--}}
-                        {{--                        </li>--}}
-                        {{--                        <li>--}}
-                        {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-                        {{--                                <i class="bi bi-chat-left-text"></i>--}}
-                        {{--                                <!--                            <span class="badge bg-success badge-number">3</span>-->--}}
-                        {{--                                <span>Messages</span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                        <li>--}}
-                        {{--                            <hr class="dropdown-divider">--}}
-                        {{--                        </li>--}}
-                        {{--                        <li>--}}
-                        {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-                        {{--                                <i class="bi bi-gear"></i>--}}
-                        {{--                                <span>Account Settings</span>--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                                {{--                        <li>--}}
+                                {{--                            <hr class="dropdown-divider">--}}
+                                {{--                        </li>--}}
+                                {{--                        <li>--}}
+                                {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+                                {{--                                <i class="bi bi-chat-left-text"></i>--}}
+                                {{--                                <!--                            <span class="badge bg-success badge-number">3</span>-->--}}
+                                {{--                                <span>Messages</span>--}}
+                                {{--                            </a>--}}
+                                {{--                        </li>--}}
+                                {{--                        <li>--}}
+                                {{--                            <hr class="dropdown-divider">--}}
+                                {{--                        </li>--}}
+                                {{--                        <li>--}}
+                                {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
+                                {{--                                <i class="bi bi-gear"></i>--}}
+                                {{--                                <span>Account Settings</span>--}}
+                                {{--                            </a>--}}
+                                {{--                        </li>--}}
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{route('feedbacks.create')}}">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center"
+                                       href="{{route('feedbacks.create')}}">
+                                        <i class="bi bi-question-circle"></i>
+                                        <span>{{ __('appword.needhelp') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>{{ __('Logout') }}</span>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        <span>{{ __('appword.logout') }}</span>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
 
 
-                    </ul><!-- End Profile Dropdown Items -->
+                            </ul><!-- End Profile Dropdown Items -->
 
-                @endguest
-            </li><!-- End Profile Nav -->
+                        @endguest
+                    </li><!-- End Profile Nav -->
 
 
-        </ul>
+                </ul>
     </nav><!-- End Icons Navigation -->
 
 </header><!-- End Header -->
@@ -174,38 +193,38 @@
         @can('viewAny', \App\Models\Category::class)
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Management</span><i
+                    <i class="bi bi-menu-button-wide"></i><span>{{ __('appword.management') }}</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     @can('create',\App\Models\Book::class)
                         <li>
                             <a href="{{route('books.create')}}">
-                                <i class="bi bi-circle"></i><span>Add new Book</span>
+                                <i class="bi bi-circle"></i><span>{{ __('appword.addnewbook') }}</span>
                             </a>
                         </li>
                     @endcan
                     @can('viewTrash',\App\Models\Book::class)
                         <li>
                             <a href="{{route('books.trash')}}">
-                                <i class="bi bi-circle"></i><span>Trash books</span>
+                                <i class="bi bi-circle"></i><span>{{ __('appword.trashbooks') }}</span>
                             </a>
                         </li>
                     @endcan
                     <li>
                         <a href="{{route('users.index')}}">
-                            <i class="bi bi-circle"></i><span>Users</span>
+                            <i class="bi bi-circle"></i><span>{{ __('appword.users') }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{route('categories.index')}}">
-                            <i class="bi bi-circle"></i><span>Categories</span>
+                            <i class="bi bi-circle"></i><span>{{ __('appword.categories') }}</span>
                         </a>
                     </li>
                     @can('viewAny',\App\Models\Feedback::class)
                         <li>
                             <a href="{{route('feedbacks.index')}}">
-                                <i class="bi bi-circle"></i><span>Feedbacks</span>
+                                <i class="bi bi-circle"></i><span>{{ __('appword.feedbacks') }}</span>
                             </a>
                         </li>
                     @endcan
@@ -218,21 +237,23 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('books.index')}}">
                 <i class="bi bi-grid"></i>
-                <span>Home</span>
+                <span>{{ __('appword.home') }}</span>
             </a>
         </li>
 
 
         @isset($categories)
-            <li class="nav-heading">Categories</li>
+            <li class="nav-heading">{{ __('appword.categories') }}</li>
             @foreach($categories as $cat)
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{{route('books.category', $cat->id)}}">
-                        <span>{{$cat->name}}</span>
+                        <span>{{$cat->name == 'Others'?  __('appword.others') : $cat->name}}</span>
                     </a>
                 </li>
             @endforeach
         @endisset
+
+
 
     </ul>
 
