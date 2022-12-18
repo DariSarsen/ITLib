@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $book = Book::all();
+        $book = Book::paginate(9);
         $favouritesId = [];
         if (Auth::check()) {
             $favouritesId = Auth::user()->favourites()->allRelatedIds()->toArray();
@@ -32,7 +33,7 @@ class BookController extends Controller
         if (Auth::check()) {
             $favouritesId = Auth::user()->favourites()->allRelatedIds()->toArray();
         }
-        return view('books.index', ['categories' => Category::all(), 'books' => $category->books, 'favourites' => $favouritesId]);
+        return view('books.index', ['categories' => Category::all(), 'books' => $category->books()->paginate(9), 'favourites' => $favouritesId]);
     }
 
     public function create()
@@ -45,13 +46,15 @@ class BookController extends Controller
     {
         $this->authorize('create', Book::class);
 
-        $validated = $request->all();
+        $validated = $request->all() + ['description' => $request->description_en];
 
         $fileName = time() . $request->file('document')->getClientOriginalName();
         $path = $request->file('document')->storeAs('books', $fileName, 'public');
-        $validated['document'] = '/storage/'.$path;
+        $validated['document'] = '/storage/' . $path;
+
         Book::create($validated);
-        return back()->with('message', 'Books Created Successfully');
+
+        return back()->with('message', __('messages.create book'));
     }
 
     public function show(Book $book)
@@ -70,8 +73,13 @@ class BookController extends Controller
     {
         $this->authorize('update', $book);
 
-        $book->update($request->all());
-        return redirect()->route('books.show', $book->id)->with('message', 'Books Updated Successfully');
+        $validated = $request->all() + ['description' => $request->description_en];
+        $fileName = time() . $request->file('document')->getClientOriginalName();
+        $path = $request->file('document')->storeAs('books', $fileName, 'public');
+        $validated['document'] = '/storage/' . $path;
+
+        $book->update($validated);
+        return redirect()->route('books.show', $book->id)->with('message', __('messages.update book'));
     }
 
     public function restore($id)
@@ -79,14 +87,14 @@ class BookController extends Controller
         $book = Book::withTrashed()->find($id);
         $this->authorize('restore', $book);
         $book->restore();
-        return back()->with('message', 'The Book has been Restored!!!');
+        return back()->with('message', __('messages.restore book'));
     }
 
     public function destroy(Book $book)
     {
         $this->authorize('delete', $book);
         $book->delete();
-        return redirect()->route('books.index')->with('message', 'The Book was added to the Trash!!!');
+        return redirect()->route('books.index')->with('message', __('messages.destroy book'));
     }
 
     public function forceDelete($id)
@@ -95,6 +103,6 @@ class BookController extends Controller
         $this->authorize('forceDelete', $book);
 
         $book->forceDelete();
-        return back()->with('message', 'Book Deleted from the DB!!!');
+        return back()->with('message', __('messages.forcedelete book'));
     }
 }

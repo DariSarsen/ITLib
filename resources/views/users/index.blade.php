@@ -15,18 +15,17 @@
                     <div class="col-lg">
 
                         <table class="table table-sm">
-                            <thead>
+                            <thead class="text-uppercase">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Auth Date</th>
-                                <th scope="col">Update Date</th>
+                                <th scope="col">{{__('appword.name')}}</th>
+                                <th scope="col">{{__('appword.email adr')}}</th>
+                                <th scope="col">{{__('appword.role')}}</th>
+                                <th scope="col">{{__('appword.authdate')}}</th>
 
                                 @can('editUser', \App\Models\User::class)
-                                    <th scope="col">Change Role</th>
-                                    <th scope="col">BAN</th>
+                                    <th scope="col">{{__('appword.changerole')}}</th>
+                                    <th scope="col"></th>
                                 @endcan
                             </tr>
                             </thead>
@@ -39,13 +38,12 @@
                                     <td>{{$users[$i]->email}}</td>
                                     <td>{{$users[$i]->role->name}}</td>
                                     <td>{{$users[$i]->created_at}}</td>
-                                    <td>{{$users[$i]->updated_at}}</td>
                                     @can('update' , $users[$i])
                                         <td>
-                                            <button type="button" class="btn btn-outline-info btn-sm"
+                                            <button type="button" class="btn btn-outline-info btn-sm text-uppercase"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#changeRole{{$i}}">
-                                                Change
+                                                {{__('appword.change')}}
                                             </button>
                                             <div class="modal fade" id="changeRole{{$i}}" tabindex="-1">
                                                 <div class="modal-dialog">
@@ -53,8 +51,7 @@
                                                         <form action="{{route('users.update',$users[$i]->id)}}"
                                                               method="POST">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Change Role of The
-                                                                    User {{$users[$i]->name}}</h5>
+                                                                <h5 class="modal-title">{{__('appword.changerole')}} {{__('appword.oftheuser')}}: {{$users[$i]->name}}</h5>
                                                                 <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
@@ -77,9 +74,9 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close
+                                                                        data-bs-dismiss="modal">{{__('appword.close')}}
                                                                 </button>
-                                                                <button class="btn btn-primary">Change
+                                                                <button class="btn btn-primary">{{__('appword.change')}}
                                                                 </button>
                                                             </div>
                                                         </form>

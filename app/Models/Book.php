@@ -13,7 +13,7 @@ class Book extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['name','author','description','year','category_id','document'];
+    protected $fillable = ['name','author','description','description_en','description_ru','description_kz','year','category_id','document'];
 
     public function category(){
         return $this->belongsTo(Category::class);

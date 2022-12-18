@@ -7,7 +7,7 @@
         <div class="row">
 
             <div class="pagetitle">
-                <h1>Categories List</h1>
+                <h1>{{__('appword.Categories List')}}</h1>
             </div><!-- End Page Title -->
 
             <section class="section">
@@ -17,7 +17,7 @@
                             @can('create', \App\Models\Category::class)
                             <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#addcategory">
-                                Add New Category
+                                {{__('appword.Add New Category')}}
                             </button>
 
                             <div class="modal fade" id="addcategory" tabindex="-1">
@@ -26,14 +26,14 @@
                                         <form action="{{route('categories.store')}}"
                                               method="POST">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Add New Category</h5>
+                                                <h5 class="modal-title">{{__('appword.Add New Category')}}</h5>
                                                 <button type="button" class="btn-close"
                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 @csrf
                                                 <div class="col-sm-9 mx-auto">
-                                                    <input required type="text" value="{{old('name')}}" placeholder="Enter Name.."
+                                                    <input required type="text" value="{{old('name')}}" placeholder="{{__('appword.Enter Name')}}.."
                                                            class="form-control @error('name') is-invalid @enderror" id="inputName" name="name">
                                                     @error('name')
                                                     <div class="invalid-feedback">{{$message}}</div>
@@ -43,9 +43,9 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close
+                                                        data-bs-dismiss="modal">{{__('appword.close')}}
                                                 </button>
-                                                <button class="btn btn-primary">Add
+                                                <button class="btn btn-primary">{{__('appword.add')}}
                                                 </button>
                                             </div>
                                         </form>
@@ -59,12 +59,12 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Date Added</th>
-                                <th scope="col">Update Date</th>
+                                <th scope="col">{{__('appword.name')}}</th>
+                                <th scope="col">{{__('appword.Date Added')}}</th>
+                                <th scope="col">{{__('appword.Update Date')}}</th>
                                 @can('create',\App\Models\Category::class)
-                                <th scope="col">EDIT</th>
-                                <th scope="col" width="6%">DELETE</th>
+                                <th scope="col">{{__('appword.Editing')}}</th>
+                                <th scope="col" width="6%">{{__('appword.deletion')}}</th>
                                 @endcan
                             </tr>
                             </thead>
@@ -79,23 +79,23 @@
                                     @can('update', $categoriess[$i])
                                     <td>
 
-                                        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-outline-info btn-sm text-uppercase" data-bs-toggle="modal"
                                                 data-bs-target="#edit{{$i}}">
-                                            EDIT
+                                            {{__('appword.edit')}}
                                         </button>
                                         <div class="modal fade" id="edit{{$i}}" tabindex="-1">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <form action="{{route('categories.update',$categoriess[$i]->id)}}" method="POST">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Edit Name</h5>
+                                                            <h5 class="modal-title">{{__('appword.Name Editing')}}</h5>
                                                             <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             @csrf
                                                             @method('PUT')
-                                                            <input required type="text" value="{{old('name')}}" placeholder="Enter New Name.."
+                                                            <input required type="text" value="{{old('name')}}" placeholder="{{__('appword.Enter New Name')}}.."
                                                                    class="form-control @error('name') is-invalid @enderror" id="inputName" name="name">
                                                             @error('name')
                                                             <div class="invalid-feedback">{{$message}}</div>
@@ -103,10 +103,10 @@
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close
+                                                            <button type="button" class="btn btn-secondary text-capitalize"
+                                                                    data-bs-dismiss="modal">{{__('appword.close')}}
                                                             </button>
-                                                            <button class="btn btn-primary">Edit
+                                                            <button class="btn btn-primary text-capitalize">{{__('appword.edit')}}
                                                             </button>
                                                         </div>
                                                     </form>
@@ -118,9 +118,9 @@
                                     @endcan
                                     @can('delete', $categoriess[$i])
                                     <td>
-                                        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-outline-info btn-sm text-uppercase" data-bs-toggle="modal"
                                                 data-bs-target="#delete{{$i}}">
-                                            DELETE
+                                            {{__('appword.delete')}}
                                         </button>
                                         <div class="modal fade" id="delete{{$i}}" tabindex="-1">
                                             <div class="modal-dialog">
@@ -128,7 +128,7 @@
                                                     <form action="{{route('categories.destroy',$categoriess[$i]->id)}}"
                                                           method="POST">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Delete Category {{$categoriess[$i]->name}}</h5>
+                                                            <h5 class="modal-title">{{__('appword.Delete Category')}} {{$categoriess[$i]->name}}</h5>
                                                             <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
@@ -136,15 +136,15 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="text-center">
-                                                                Are you sure?
+                                                                {{__('appword.areyousure')}}?
                                                             </div>
 
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">No
+                                                                    data-bs-dismiss="modal">{{__('appword.no')}}
                                                             </button>
-                                                            <button class="btn btn-primary">Yes, delete
+                                                            <button class="btn btn-primary">{{__('appword.confirmdelete')}}
                                                             </button>
                                                         </div>
                                                     </form>

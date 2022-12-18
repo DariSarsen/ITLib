@@ -7,16 +7,16 @@
         <div class="row">
             <!-- Small tables -->
             <table class="table table-sm">
-                <thead>
+                <thead class="text-uppercase">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Deleted at</th>
+                    <th scope="col">{{__('appword.namebook')}}</th>
+                    <th scope="col">{{__('appword.author')}}</th>
+                    <th scope="col">{{__('appword.bookyear')}}</th>
+                    <th scope="col">{{__('appword.deleted at')}}</th>
                     @can('viewTrash', \App\Models\Book::class)
-                        <th scope="col">RESTORE</th>
-                        <th scope="col" width="6%">DELETE</th>
+                        <th scope="col"></th>
+                        <th scope="col" width="6%"></th>
                     @endcan
                 </tr>
                 </thead>
@@ -33,17 +33,17 @@
                                 <form action="{{route('books.restore',$books[$i]->id)}}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-outline-success btn-sm">
-                                        RESTORE
+                                    <button type="submit" class="btn btn-outline-success btn-sm text-uppercase">
+                                        {{__('appword.restore')}}
                                     </button>
                                 </form>
                             </td>
                         @endcan
                         @can('forceDelete', $books[$i])
                             <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-danger btn-sm text-uppercase" data-bs-toggle="modal"
                                         data-bs-target="#delete{{$i}}">
-                                    DELETE
+                                    {{__('appword.delete')}}
                                 </button>
                                 <div class="modal fade" id="delete{{$i}}" tabindex="-1">
                                     <div class="modal-dialog">
@@ -53,22 +53,21 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Delete without the possibility of
-                                                        recovery</h5>
+                                                    <h5 class="modal-title">{{__('appword.forcedelete')}}</h5>
                                                     <button type="button" class="btn-close"
                                                             data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
 
                                                     <div class="text-center">
-                                                        Are you sure?
+                                                        {{__('appword.areyousure')}}?
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">No
+                                                            data-bs-dismiss="modal">{{__('appword.no')}}
                                                     </button>
-                                                    <button class="btn btn-danger">Yes, delete</button>
+                                                    <button class="btn btn-danger">{{__('appword.confirmdelete')}}</button>
                                                 </div>
 
                                             </form>

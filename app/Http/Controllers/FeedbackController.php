@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FeedbackRequest;
 use App\Models\Category;
 use App\Models\Feedback;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
@@ -26,16 +27,17 @@ class FeedbackController extends Controller
     {
         $this->authorize('create', Feedback::class);
 
-        Feedback::create($request->all());
-        return back()->with('message','Your feedback has been sent successfully!!!');
+        Feedback::create($request->all()+['email'=>Auth::user()->email]);
+        return back()->with('message',__('messages.create feedback'));
     }
-
 
     public function destroy(Feedback $feedback)
     {
         $this->authorize('delete',$feedback);
         $feedback->delete();
-        return back()->with('message','The Feedback deleted!!!');
+        return back()->with('message',__('messages.delete feedback'));
     }
+
+
 
 }

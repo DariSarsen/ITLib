@@ -15,11 +15,10 @@ class LanguageManager
     public function handle($request, Closure $next)
 
     {
-
         if (session()->has('mylocale') and array_key_exists(session()->get('mylocale'), config('app.languages'))) {
             App::setLocale(session()->get('mylocale'));
-        } else {
-            App::setLocale(session()->get('locale'));
+        }else{
+            App::setLocale(config('app.locale'));
         }
 
 

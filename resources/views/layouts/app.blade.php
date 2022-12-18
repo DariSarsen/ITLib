@@ -49,7 +49,7 @@
     @isset($search)
         <div class="search-bar">
             <form class="search-form d-flex align-items-center" method="GET" action="{{route($search.'.search')}}">
-                <input type="text" name="search_{{$search}}" placeholder="Search" title="Enter search keyword">
+                <input type="text" name="search_{{$search}}" placeholder="{{__('appword.search')}}.." title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
             </form>
         </div><!-- End Search Bar -->
@@ -284,7 +284,11 @@
 
 
     @yield('content')
-</main><!-- End #main -->
+
+
+</main>
+
+<!-- End #main -->
 
 <!-- ======= Footer ======= -->
 {{--<footer id="footer" class="footer">--}}

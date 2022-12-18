@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile/favourites/{book}', [UserController::class, 'editFavourites'])->name('user.editFavourites');
         Route::get('/feedbacks/create', [FeedbackController::class, 'create'])->name('feedbacks.create');
         Route::post('/feedbacks/create', [FeedbackController::class, 'store'])->name('feedbacks.store');
+        Route::get('/download/{book}',[\App\Http\Controllers\DownloadController::class,'download'])->name('download');
 
         Route::prefix('management')->middleware('hasrole:admin,moderator')->group(function () {
             Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -62,7 +63,10 @@ Auth::routes();
 
 Route::get('lang/{lang}', [LangController::class, 'change'])->name('changeLang');
 
-Route::resource('books', BookController::class)->only('index', 'show');
+
+Route::get('/books', [BookController::class,'index'])->name('books.index');
+Route::get('/book/{book}', [BookController::class,'show'])->name('books.show');
+
 Route::get('/books/category/{category}', [BookController::class, 'booksByCategory'])->name('books.category');
 
 

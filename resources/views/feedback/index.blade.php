@@ -15,21 +15,21 @@
                             <div class="card-body">
                                 <div class="card-title w-100">
                                     <div>
-                                        Title: {{$feedback->title}}
+                                        {{__('appword.title')}}: {{$feedback->title}}
                                     </div>
 
                                 </div>
                                 <div>
-                                    <b>Email: </b> <span class="card-text text-secondary">{{$feedback->email}}<br>
+                                    <b>{{__('appword.email adr')}}: </b> <span class="card-text text-secondary">{{$feedback->email}}<br>
                                     </span>
-                                    <b>Description: </b>{{$feedback->description}}
+                                    <b>{{__('appword.message')}}: </b>{{$feedback->description}}
                                 </div>
                             </div>
                             <div class="card-footer border-0 text-end">
                                 <form action="{{route('feedbacks.destroy',$feedback->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger">D E L E T E</button>
+                                    <button type="submit" class="btn btn-outline-danger text-uppercase">{{__('appword.delete')}}</button>
                                 </form>
                             </div>
                         </div>

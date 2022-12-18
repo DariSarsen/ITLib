@@ -18,22 +18,25 @@
                                     </div>
                                     <div>
                                         @can('editFavourites',\App\Models\Book::class)
-                                        <form action="{{route('user.editFavourites',$book->id)}}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            @if(in_array($book->id,$favourites))
-                                                <button class="bi bi-bookmark-fill bg-white border-0" title="{{ __('appword.deletefavourites') }}"></button>
-                                            @else
-                                                <button class="bi bi-bookmark bg-white border-0" title="{{ __('appword.addfavourites') }}"></button>
-                                            @endif
-                                        </form>
+                                            <form action="{{route('user.editFavourites',$book->id)}}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                @if(in_array($book->id,$favourites))
+                                                    <button class="bi bi-bookmark-fill bg-white border-0"
+                                                            title="{{ __('appword.deletefavourites') }}"></button>
+                                                @else
+                                                    <button class="bi bi-bookmark bg-white border-0"
+                                                            title="{{ __('appword.addfavourites') }}"></button>
+                                                @endif
+                                            </form>
                                         @endcan
                                     </div>
                                 </div>
                                 <div>
                                     <b>{{ __('appword.author') }}: </b> <span class="card-text text-secondary">{{$book->author}}<br>
                                     </span>
-                                    <b>{{ __('appword.description') }}: </b><span class="card-text d-block text-truncate">{{$book->description}}</span>
+                                    <b>{{ __('appword.description') }}: </b>
+                                    <span class="card-text d-block text-truncate">{{$book->{'description_'.app()->getLocale()} }}</span>
                                 </div>
                             </div>
                             <div class="card-footer border-0">
@@ -43,7 +46,11 @@
                         </div>
                     </div>
                 @endforeach
+                {{$books->links()}}
+
             @endif
+
+
         </div>
     </div>
 @endsection

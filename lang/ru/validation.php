@@ -2,46 +2,35 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
-    'accepted' => 'The :attribute must be accepted.',
-    'accepted_if' => 'The :attribute must be accepted when :other is :value.',
-    'active_url' => 'The :attribute is not a valid URL.',
-    'after' => 'The :attribute must be a date after :date.',
-    'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
-    'alpha' => 'The :attribute must only contain letters.',
-    'alpha_dash' => 'The :attribute must only contain letters, numbers, dashes and underscores.',
-    'alpha_num' => 'The :attribute must only contain letters and numbers.',
-    'array' => 'The :attribute must be an array.',
-    'before' => 'The :attribute must be a date before :date.',
-    'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
+    'accepted' => ':attribute должен быть принят.',
+    'accepted_if' => ':attribute должен быть принят, когда :other является :value.',
+    'active_url' => ':attribute не является допустимым URL.',
+    'after' => ':attribute должен быть датой после :date.',
+    'after_or_equal' => ':attribute должен быть датой после или равная :date.',
+    'alpha' => ':attribute должен содержать только буквы.',
+    'alpha_dash' => ':attribute должен содержать только буквы, цифры, тире и подчеркивания.',
+    'alpha_num' => ':attribute должен содержать только буквы и цифры.',
+    'array' => ':attribute должен быть массивом.',
+    'before' => ':attribute должен быть датой до :date.',
+    'before_or_equal' => ':attribute должен быть датой до или равной :date.',
     'between' => [
-        'array' => 'The :attribute must have between :min and :max items.',
-        'file' => 'The :attribute must be between :min and :max kilobytes.',
-        'numeric' => 'The :attribute must be between :min and :max.',
-        'string' => 'The :attribute must be between :min and :max characters.',
+        'array' => ':attribute должен содержать элементы от :min до :max.',
+        'file' => ':attribute  должен находиться в диапазоне от :min до :max килобайт.',
+        'numeric' => ':attribute должен находиться в диапазоне от :min до :max.',
+        'string' => ':attribute должен находиться в диапазоне от :min до :max символов.',
     ],
-    'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
-    'current_password' => 'The password is incorrect.',
-    'date' => 'The :attribute is not a valid date.',
-    'date_equals' => 'The :attribute must be a date equal to :date.',
-    'date_format' => 'The :attribute does not match the format :format.',
-    'declined' => 'The :attribute must be declined.',
-    'declined_if' => 'The :attribute must be declined when :other is :value.',
-    'different' => 'The :attribute and :other must be different.',
-    'digits' => 'The :attribute must be :digits digits.',
-    'digits_between' => 'The :attribute must be between :min and :max digits.',
-    'dimensions' => 'The :attribute has invalid image dimensions.',
+    'boolean' => 'Поле :attribute должно быть true или false.',
+    'confirmed' => 'Подтверждение :attribute не соответствует.',
+    'current_password' => 'Пароль неверный.',
+    'date' => ':attribute недопустим дата.',
+    'date_equals' => ':attribute должен быть датой, равной :date',
+    'date_format' => ':attribute не соответствует формату :format.',
+    'declined' => ':attribute должен быть отклонен.',
+    'declined_if' => ':attribute должен быть отклонен, когда :other равно :value',
+    'different' => ':attribute и :other должны отличаться',
+    'digits' => 'У :attribute должен быть :digits цифры.',
+    'digits_between' => ':attribute должен находиться межд :min и :max цифрами.',
+    'dimensions' => ':attribute имеет недопустимые размеры изображения.',
     'distinct' => 'The :attribute field has a duplicate value.',
     'doesnt_end_with' => 'The :attribute may not end with one of the following: :values.',
     'doesnt_start_with' => 'The :attribute may not start with one of the following: :values.',

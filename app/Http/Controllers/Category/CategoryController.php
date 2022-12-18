@@ -39,18 +39,18 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
         Category::create($validated);
-        return redirect()->route('categories.index')->with('message', 'Category added Successfully');
+        return redirect()->route('categories.index')->with('message', __('messages.store category'));
     }
 
     public function update(Request $request, Category $category)
     {
-        $this->authorize('update', Category::class);
+        $this->authorize('update', $category);
 
         $validated = $request->validate([
             'name' => 'required'
         ]);
         $category->update($validated);
-        return redirect()->route('categories.index')->with('message', 'Category Updated Successfully');
+        return redirect()->route('categories.index')->with('message', __('messages.update category'));
     }
 
     public function destroy(Category $category)
@@ -58,6 +58,6 @@ class CategoryController extends Controller
         $this->authorize('delete', $category);
 
         $category->delete();
-        return redirect()->route('categories.index')->with('message', 'Category Deleted Successfully');
+        return redirect()->route('categories.index')->with('message', __('messages.delete category'));
     }
 }

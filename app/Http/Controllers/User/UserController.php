@@ -64,16 +64,15 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->authorize('update', $user);
-
-        if (Auth::user() != $user) {
+        if ($user->role->name != 'admin') {
             $request->validate(['role_id' => 'required|numeric|exists:roles,id']);
             $user->update([
                 'role_id' => $request->role_id
             ]);
 
-            return back()->with('message', 'User\'s role has been Successfully Changed');
+            return back()->with('message', __('messages.changerole'));
         } else {
-            return back()->with('message', 'You can\'t Change your role');
+            return back()->with('message', __('messages.changeroleerror'));
         }
     }
 
