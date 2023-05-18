@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="col d-sm-flex justify-content-sm-center">
-                        <button class="btn btn-outline-success" style="letter-spacing: 2px">{{__('appword.update')}}</button>
+                        <button class="btn btn-outline-success text-uppercase" style="letter-spacing: 2px">{{__('appword.update')}}</button>
                     </div>
                 </form>
             </div>

@@ -20,7 +20,6 @@
                         <dd class="col-md-9">{{$book->{'description_'.app()->getLocale()} }}</dd>
 
                         <a href="{{asset($book->document)}}" class="text-center mt-4"><i class="bi bi-file-earmark-arrow-down"> </i>{{__('appword.download')}}</a>
-
                     </dl>
                 </h5>
                 @can('update',$book)
@@ -34,6 +33,12 @@
                     </form>
                 </div>
                 @endcan
+
+                <div class="mt-3">
+                    <iframe src="{{ asset($book->document) }}" width="100%" height="600">
+                        This browser does not support PDFs. Please download the PDF to view it: <a href="{{ asset($book->document) }}">Download PDF</a>
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>

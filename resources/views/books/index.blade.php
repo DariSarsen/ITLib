@@ -14,7 +14,8 @@
                             <div class="card-body">
                                 <div class="card-title text-center d-inline-flex w-100 justify-content-between">
                                     <div>
-                                        {{$book->name}} <span class="h5">({{$book->year}})</span>
+                                        {{ \Illuminate\Support\Str::limit($book->name,60,$end='...') }}
+                                         <span class="h5">({{$book->year}})</span>
                                     </div>
                                     <div>
                                         @can('editFavourites',\App\Models\Book::class)
@@ -36,7 +37,8 @@
                                     <b>{{ __('appword.author') }}: </b> <span class="card-text text-secondary">{{$book->author}}<br>
                                     </span>
                                     <b>{{ __('appword.description') }}: </b>
-                                    <span class="card-text d-block text-truncate">{{$book->{'description_'.app()->getLocale()} }}</span>
+                                    <span
+                                        class="card-text d-block">{{ \Illuminate\Support\Str::limit($book->{'description_'.app()->getLocale()},150,$end='...') }}</span>
                                 </div>
                             </div>
                             <div class="card-footer border-0">

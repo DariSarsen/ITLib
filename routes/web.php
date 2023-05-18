@@ -9,11 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $categories = Category::all();
-    return redirect()->route('books.index', ['categories' => $categories]);
-});
-
+Route::get('/', function () {return redirect()->route('books.index');});
 
 Route::middleware('auth')->group(function () {
     Route::middleware('status')->group(function () {
@@ -22,7 +18,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile/favourites/{book}', [UserController::class, 'editFavourites'])->name('user.editFavourites');
         Route::get('/feedbacks/create', [FeedbackController::class, 'create'])->name('feedbacks.create');
         Route::post('/feedbacks/create', [FeedbackController::class, 'store'])->name('feedbacks.store');
-        Route::get('/download/{book}',[\App\Http\Controllers\DownloadController::class,'download'])->name('download');
 
         Route::prefix('management')->middleware('hasrole:admin,moderator')->group(function () {
             Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -42,6 +37,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('.update');
             Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('.destroy');
         });
+
         Route::prefix('management')->as('books')->middleware('hasrole:moderator')->group(function () {
             Route::get('/trashBooks', [BookController::class, 'trashbooks'])->name('.trash');
             Route::put('/trashBooks/{book}/restore', [BookController::class, 'restore'])->name('.restore');
@@ -53,7 +49,12 @@ Route::middleware('auth')->group(function () {
             Route::delete('/feedback/{feedback}', [FeedbackController::class, 'destroy'])->name('.destroy');
         });
         Route::middleware('hasrole:moderator')->group(function () {
-            Route::resource('books', BookController::class)->except('index', 'show');
+            Route::post('books/store', [BookController::class, 'store'])->name('books.store');
+            Route::get('books/create', [BookController::class, 'create'])->name('books.create');
+            Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
+            Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
+            Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+
         });
     });
 });
@@ -63,11 +64,16 @@ Auth::routes();
 
 Route::get('lang/{lang}', [LangController::class, 'change'])->name('changeLang');
 
+Route::get('books/', [BookController::class, 'index'])->name('books.index');
+Route::get('books/{book}', [BookController::class, 'show'])->name('books.show')
+//    ->where('book', '[0-9]+')
+;
 
-Route::get('/books', [BookController::class,'index'])->name('books.index');
-Route::get('/book/{book}', [BookController::class,'show'])->name('books.show');
+//Route::resource('books', BookController::class)->only('index', 'show');
 
-Route::get('/books/category/{category}', [BookController::class, 'booksByCategory'])->name('books.category');
+Route::get('/books/category/{category}', [BookController::class, 'booksByCategory'])->name('books.category')
+//    ->where('category', '[0-9]+')
+;
 
 
 

@@ -16,11 +16,6 @@ class BookPolicy
         return $user->role->name == 'moderator';
     }
 
-    public function view(User $user, Book $book)
-    {
-
-    }
-
     public function editFavourites(User $user)
     {
         return true;

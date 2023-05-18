@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
@@ -46,10 +45,10 @@ class BookController extends Controller
     {
         $this->authorize('create', Book::class);
 
-        $validated = $request->all() + ['description' => $request->description_en];
+        $validated = $request->all();
 
         $fileName = time() . $request->file('document')->getClientOriginalName();
-        $path = $request->file('document')->storeAs('books', $fileName, 'public');
+        $path = $request->file('document')->storeAs('documents', $fileName, 'public');
         $validated['document'] = '/storage/' . $path;
 
         Book::create($validated);
@@ -73,7 +72,7 @@ class BookController extends Controller
     {
         $this->authorize('update', $book);
 
-        $validated = $request->all() + ['description' => $request->description_en];
+        $validated = $request->all();
         $fileName = time() . $request->file('document')->getClientOriginalName();
         $path = $request->file('document')->storeAs('books', $fileName, 'public');
         $validated['document'] = '/storage/' . $path;

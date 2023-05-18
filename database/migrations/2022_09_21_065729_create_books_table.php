@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('author');
             $table->unsignedInteger('year');
-            $table->text('description');
             $table->softDeletes();
             $table->timestamps();
         });

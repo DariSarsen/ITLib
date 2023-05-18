@@ -9,8 +9,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/style.css', 'resources/js/main.js'])
 
@@ -120,33 +118,7 @@
                                         <span>{{ __('appword.favourites') }}</span>
                                     </a>
                                 </li>
-                                {{--                        <li>--}}
-                                {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-                                {{--                                <i class="bi bi-bell"></i>--}}
-                                {{--                                <!--                            <span class="badge bg-primary badge-number">4</span>-->--}}
-                                {{--                                <span>Notifications</span>--}}
-                                {{--                            </a>--}}
-                                {{--                        </li>--}}
 
-                                {{--                        <li>--}}
-                                {{--                            <hr class="dropdown-divider">--}}
-                                {{--                        </li>--}}
-                                {{--                        <li>--}}
-                                {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-                                {{--                                <i class="bi bi-chat-left-text"></i>--}}
-                                {{--                                <!--                            <span class="badge bg-success badge-number">3</span>-->--}}
-                                {{--                                <span>Messages</span>--}}
-                                {{--                            </a>--}}
-                                {{--                        </li>--}}
-                                {{--                        <li>--}}
-                                {{--                            <hr class="dropdown-divider">--}}
-                                {{--                        </li>--}}
-                                {{--                        <li>--}}
-                                {{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-                                {{--                                <i class="bi bi-gear"></i>--}}
-                                {{--                                <span>Account Settings</span>--}}
-                                {{--                            </a>--}}
-                                {{--                        </li>--}}
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

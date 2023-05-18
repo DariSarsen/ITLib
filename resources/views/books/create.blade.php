@@ -71,7 +71,7 @@
                         <label for="desc" class="col-sm-3 col-form-label">{{__('appword.description')}}(en):</label>
                         <div class="col-sm-9">
                             <textarea required id="desc" class="form-control @error('description') is-invalid @enderror" rows="5"
-                                      name="description_en"> {{old('description')}}</textarea>
+                                      name="description_en" > {{old('description_en')}}</textarea>
                             @error('description')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
@@ -82,7 +82,7 @@
                         <label for="desc" class="col-sm-3 col-form-label">{{__('appword.description')}}(ru):</label>
                         <div class="col-sm-9">
                             <textarea required id="desc" class="form-control @error('description') is-invalid @enderror" rows="5"
-                                      name="description_ru"> {{old('description')}}</textarea>
+                                      name="description_ru"> {{old('description_ru')}}</textarea>
                             @error('description')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
@@ -93,7 +93,7 @@
                         <label for="desc" class="col-sm-3 col-form-label">{{__('appword.description')}}(kz):</label>
                         <div class="col-sm-9">
                             <textarea required id="desc" class="form-control @error('description') is-invalid @enderror" rows="5"
-                                      name="description_kz"> {{old('description')}}</textarea>
+                                      name="description_kz"> {{old('description_kz')}}</textarea>
                             @error('description')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror

@@ -14,6 +14,10 @@ class RouteServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        Route::pattern('book', '[0-9]+');
+        Route::pattern('category', '[0-9]+');
+        Route::pattern('feedback', '[0-9]+');
+
         $this->configureRateLimiting();
 
         $this->routes(function () {
@@ -24,6 +28,8 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+
     }
 
     protected function configureRateLimiting()
